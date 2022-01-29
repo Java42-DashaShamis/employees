@@ -76,6 +76,11 @@ public class EmployeesMethodsMapsImpl implements EmployeesMethods {
 
 	@Override
 	public Iterable<Employee> getAllEmployees() {
+		/* V.R.
+		 *  This methods returns the list of already existing instances of employees.
+		 *  It gives possibility to change employees out of this class.
+		 *  It is necessary to copy eanch of4 instance. -Like in method getEmployee();
+		 */
 		List<Employee> employees = new LinkedList<Employee>(mapEmployees.values());
 		return employees;
 	}
@@ -89,6 +94,10 @@ public class EmployeesMethodsMapsImpl implements EmployeesMethods {
 
 	@Override
 	public Iterable<Employee> getEmployeesByAge(int ageFrom, int ageTo) {
+		/* V.R. This test may be skipped with the same result
+		 * If parameters aren't correct (by the way ageFrom less ageTo only), then
+		 * subMap throws the same exception
+		 */
 		if(ageFrom>=ageTo) {
 			throw new IllegalArgumentException("Wrong Range");
 		}
@@ -102,6 +111,10 @@ public class EmployeesMethodsMapsImpl implements EmployeesMethods {
 
 	@Override
 	public Iterable<Employee> getEmployeesBySalary(int salaryFrom, int salaryTo) {
+		/* V.R. This test may be skipped with the same result
+		 * If parameters aren't correct (by the way salaryFrom less salaryTo only), then
+		 * subMap throws the same exception
+		 */
 		if(salaryFrom>=salaryTo) {
 			throw new IllegalArgumentException("Wrong Range");
 		}
@@ -121,6 +134,10 @@ public class EmployeesMethodsMapsImpl implements EmployeesMethods {
 
 	@Override
 	public Iterable<Employee> getEmployeesByDepartmentAndSalary(String department, int salaryFrom, int salaryTo) {
+		/* V.R. This test may be also skipped with the same result
+		 * If parameters aren't correct then list of employees will be empty
+		 * and iterable too
+		 */
 		if(salaryFrom>=salaryTo) {
 			throw new IllegalArgumentException("Wrong Range");
 		}
@@ -142,6 +159,9 @@ public class EmployeesMethodsMapsImpl implements EmployeesMethods {
 		removeEmployee(empl.id);
 		empl.salary = newSalary;
 		addEmployee(empl);
+		/* V.R. It may be done a little bit simpler. You are working with all of maps (4).
+		 *  But it is possible to update salary map only
+		 */
 		return  ReturnCode.OK;
 	}
 	
@@ -157,6 +177,9 @@ public class EmployeesMethodsMapsImpl implements EmployeesMethods {
 		removeEmployee(empl.id);
 		empl.department = newDepartment;
 		addEmployee(empl);
+		/* V.R. It may be done a little bit simpler. You are working with all of maps (4).
+		 *  But it is possible to update department map only
+		 */
 		return  ReturnCode.OK;
 	}
 
